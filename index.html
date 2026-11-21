@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>오늘 무슨 노래 듣지? 🎧 | 맞춤 음악 추천 서비스</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="app-viewport">
+
+    <!-- ================= 1. 첫 화면 (INTRO) ================= -->
+    <section id="view-intro" class="view-screen active">
+      <header class="top-bar" style="border: none; width: 100%;">
+        <div class="top-brand">
+          <span>🎧</span> 오늘 무슨 노래 듣지?
+        </div>
+        <div class="top-actions">
+          <button id="btn-toggle-sound" class="btn-sound" title="효과음 켜기/끄기">🔔</button>
+          <div class="badge-pill">Daily Music</div>
+        </div>
+      </header>
+
+      <div class="intro-hero">
+        <div class="vinyl-wrapper">
+          <div class="vinyl-disc">
+            <div class="vinyl-center">🎵</div>
+          </div>
+          <span class="floating-note fn-1">✨</span>
+          <span class="floating-note fn-2">🎶</span>
+          <span class="floating-note fn-3">💖</span>
+        </div>
+
+        <!-- 서비스 제목 -->
+        <h1 class="intro-title">
+          오늘 무슨 노래 <span>듣지?</span>
+        </h1>
+        <!-- 짧은 소개 문구 -->
+        <p class="intro-desc">
+          오늘의 당신에게 어울리는 노래를 추천해 주는 웹서비스
+        </p>
+
+        <div class="features-tag-list">
+          <div class="tag-item">🌡️ 온도별 맞춤</div>
+          <div class="tag-item">🏢 외출 상황 반영</div>
+          <div class="tag-item">🥰 기분별 선곡</div>
+          <div class="tag-item">🇰🇷 국내 / 🌐 해외</div>
+        </div>
+      </div>
+
+      <!-- 첫 화면 시작 버튼 -->
+      <button id="btn-start" class="btn-main" type="button">
+        <span>오늘 노래 골라줘!</span>
+        <span>👉</span>
+      </button>
+    </section>
+
+    <!-- ================= 2. 입력 화면 (INPUT) ================= -->
+    <section id="view-input" class="view-screen">
+      <header class="top-bar">
+        <div class="top-brand">
+          <span>🎧</span> 오늘 무슨 노래 듣지?
+        </div>
+        <div class="top-actions">
+          <div class="badge-pill">상황 선택하기</div>
+        </div>
+      </header>
+
+      <div class="step-header">
+        <div class="step-subtitle">INPUT SECTION</div>
+        <h2 class="step-title">오늘의 상황을<br>선택해주세요 🌸</h2>
+      </div>
+
+      <!-- 1) 온도 선택 -->
+      <div class="section-card" id="card-temp">
+        <div class="card-label">
+          <span>1. 오늘의 온도</span>
+          <span class="req-tag">1도 단위 선택</span>
+        </div>
+
+        <div class="temp-display-box">
+          <div class="temp-number">
+            <span id="temp-val-text">18</span><span class="temp-unit">°C</span>
+          </div>
+          <div>
+            <div id="temp-status-badge" class="temp-status-badge">
+              <span>🍃</span> <span>선선하고 산책하기 좋은 날씨</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-container">
+          <input type="range" id="temp-slider" class="temp-slider" min="-20" max="34" step="1" value="18">
+          <div class="slider-range-labels">
+            <span>-20°C (최저)</span>
+            <span>0°C</span>
+            <span>15°C</span>
+            <span>34°C (최고)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2) 외출 이유 선택 -->
+      <div class="section-card" id="card-outing">
+        <div class="card-label">
+          <span>2. 오늘의 외출</span>
+          <span class="req-tag">필수 선택</span>
+        </div>
+
+        <div class="option-grid" id="grid-outing">
+          <div class="option-card" data-val="commute">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">🏢</span>
+            <span class="opt-name">출근이나 등교</span>
+          </div>
+          <div class="option-card" data-val="date">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">💑</span>
+            <span class="opt-name">데이트</span>
+          </div>
+          <div class="option-card" data-val="travel">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">✈️</span>
+            <span class="opt-name">여행</span>
+          </div>
+          <div class="option-card" data-val="home">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">🛋️</span>
+            <span class="opt-name">집콕</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3) 기분 선택 -->
+      <div class="section-card" id="card-mood">
+        <div class="card-label">
+          <span>3. 지금 기분</span>
+          <span class="req-tag">필수 선택</span>
+        </div>
+
+        <div class="option-grid" id="grid-mood">
+          <div class="option-card" data-val="happy">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">😊</span>
+            <span class="opt-name">좋음</span>
+          </div>
+          <div class="option-card" data-val="tired">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">🥱</span>
+            <span class="opt-name">피곤함</span>
+          </div>
+          <div class="option-card" data-val="gloomy">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">😢</span>
+            <span class="opt-name">우울함</span>
+          </div>
+          <div class="option-card" data-val="flutter">
+            <span class="check-icon">✓</span>
+            <span class="opt-emoji">🥰</span>
+            <span class="opt-name">설렘</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4) 국내 / 해외 선택 -->
+      <div class="section-card" id="card-origin">
+        <div class="card-label">
+          <span>4. 음악 선호 (국내 / 해외)</span>
+          <span class="req-tag">선택 가능</span>
+        </div>
+
+        <div class="segmented-control" id="grid-origin">
+          <button type="button" class="seg-button active" data-val="korea">
+            <span>🇰🇷</span> 국내 가요
+          </button>
+          <button type="button" class="seg-button" data-val="foreign">
+            <span>🌐</span> 해외 팝송
+          </button>
+        </div>
+      </div>
+
+      <!-- '오늘 노래 골라줘!' 결과 출력 버튼 -->
+      <button id="btn-submit" class="btn-main" type="button" style="margin-top: 6px;">
+        <span>오늘 노래 골라줘!</span>
+        <span>🎵</span>
+      </button>
+    </section>
+
+    <!-- ================= 3. 결과 화면 (RESULT) ================= -->
+    <section id="view-result" class="view-screen">
+      <header class="top-bar">
+        <div class="top-brand">
+          <span>🎧</span> 오늘 무슨 노래 듣지?
+        </div>
+        <div class="badge-pill">추천 완료 ✨</div>
+      </header>
+
+      <!-- 선택 요약 뱃지 -->
+      <div class="result-summary-bar" id="result-summary-bar">
+        <!-- 동적 뱃지 삽입 -->
+      </div>
+
+      <!-- 추천 멘트 -->
+      <div class="comment-card">
+        <div class="comment-quote-icon">💌</div>
+        <div class="comment-text" id="result-comment">
+          <!-- 추천 멘트 삽입 -->
+        </div>
+      </div>
+
+      <!-- 오늘의 추천 노래 -->
+      <div class="song-card">
+        <div class="music-waves">
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+
+        <div class="album-art-box" id="album-art-box">
+          <div class="album-art-emoji" id="album-art-emoji">💿</div>
+        </div>
+
+        <div class="song-genre-tag" id="song-genre-tag">장르 태그</div>
+        <h3 class="song-title" id="song-title">노래 제목</h3>
+        <p class="song-artist" id="song-artist">가수 이름</p>
+
+        <a id="btn-youtube-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-youtube">
+          <span>▶️</span> 유튜브에서 감상하기
+        </a>
+      </div>
+
+      <!-- 추천 이유 -->
+      <div class="reason-card">
+        <div class="reason-header">
+          <span>💡</span> 왜 이 노래를 추천했나요?
+        </div>
+        <div class="reason-content" id="result-reason">
+          <!-- 추천 이유 삽입 -->
+        </div>
+      </div>
+
+      <!-- 하단 액션 버튼 -->
+      <div class="result-actions">
+        <button id="btn-reroll" class="btn-refresh-same" type="button">
+          <span>🔀 같은 조건으로 다른 노래 추천받기</span>
+        </button>
+        <!-- '다시 골라보기 🔄' 버튼 -->
+        <button id="btn-reset" class="btn-reset-all" type="button">
+          <span>다시 골라보기 🔄</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 로딩 연출 화면 -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="pulse-disc">🎧</div>
+      <div class="loading-text">상황에 딱 맞는 노래를 찾는 중...</div>
+      <div class="loading-subtext">오늘의 기온, 외출, 기분을 분석하고 있어요 💿✨</div>
+    </div>
+
+    <!-- 플로팅 토스트 메시지 -->
+    <div id="toast-message" class="toast-message">
+      <span id="toast-icon">⚠️</span>
+      <span id="toast-text">외출 이유를 선택해주세요!</span>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
